@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Add Element</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+      <div class="container">
+            <h1>Add Element to Set</h1>
+            <form action="" method="post">
+                  <label for="set_name">Select Set:</label>
+                  <select id="set_name" name="set_name">
+                        {% for set in sets %}
+                        <option value="{{ set }}">{{ set }}</option>
+                        {% endfor %}
+                  </select>
+                  <br><br>
+                  <label for="element_name">Element Name:</label>
+                  <input type="text" id="element_name" name="element_name" required>
+                  <br><br>
+                  <input type="submit" value="Add Element">
+            </form>
+            <a href="/">Back to Home</a>
+      </div>
+
+      <script>
+            $(document).ready(function () {
+                  $.get('/sets', function (data) {
+                        data.forEach(function (set) {
+                              $('#set_name').append('<option value="' + set.name + '">' + set.name + '</option>');
+                        });
+                  });
+            });
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Set Theory Ontology</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+      <div class="container">
+            <h1>Set Theory Ontology</h1>
+            <button id="load-sets">Load Sets</button>
+            <div id="sets-list"></div>
+            <div id="set-details"></div>
+            <a href="/add_element">Add Element to Set</a>
+            <a href="/add_set">Add Set to Ontology</a>
+            <a href="/set_operation">Perform Set Operations</a>
+      </div>
+
+      <script>
+            $(document).ready(function () {
+                  $('#load-sets').click(function () {
+                        $.get('/sets', function (data) {
+                              $('#sets-list').empty();
+                              data.forEach(function (set) {
+                                    $('#sets-list').append('<div class="set-item" data-set="' + set.name + '">' + set.name + ' (' + set.type + ')</div>');
+                              });
+                        });
+                  });
+
+                  $(document).on('click', '.set-item', function () {
+                        var setName = $(this).data('set');
+                        $.get('/set/' + setName, function (data) {
+                              $('#set-details').html('<h2>Details for ' + data.set + '</h2><p>Elements: ' + data.elements.join(', ') + '</p>');
+                        });
+                  });
+            });
+      </script>
+</body>
+
+</html>

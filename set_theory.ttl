@@ -1,0 +1,131 @@
+@prefix : <http://www.example.org/set_theory#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Difference a rdfs:Class .
+:Element a rdfs:Class .
+:EmptySet a rdfs:Class .
+:FiniteSet a rdfs:Class .
+:InfiniteSet a rdfs:Class .
+:Intersection a rdfs:Class .
+:PowerSet a rdfs:Class .
+:Set a rdfs:Class .
+:Subset a rdfs:Class .
+:Union a rdfs:Class .
+:UniversalSet a rdfs:Class .
+
+:Empty_Set a :Set ;
+    :setName "Empty Set" ;
+    :setType "" .
+
+:Finite_Set_1 a :Set ;
+    :hasElement :ElementA1, :ElementA2, :ElementA3 ;
+    :setName "Finite Set 1";
+    :setType "Finite" .
+
+:Infinite_Set_1 a :InfiniteSet ;
+    :hasElement :ElementB1, :ElementB2, :ElementB3 ;
+    :setName "Infinite Set 1";
+    :setType "Infinite" .
+
+:Set_A a :Set ;
+    :hasElement :ElementA1, :ElementA2, :ElementA3 ;
+    :setName "Set A" ;
+    :setType "Finite" .
+
+:Set_B a :Set ;
+    :hasElement :ElementB1, :ElementB2, :ElementB3 ;
+    :setName "Set B" ;
+    :setType "Finite" .
+
+:Universal_Set a :Set ;
+    :setName "Universal Set" ;
+    :setType "Finite" .
+
+:containsElement a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Element .
+
+:elementName a rdf:Property ;
+    rdfs:domain :Element ;
+    rdfs:range xsd:string .
+
+:hasDifference a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Set .
+
+:hasElement a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Element .
+
+:hasIntersection a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Set .
+
+:hasPowerSet a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Set .
+
+:hasUnion a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Set .
+
+:isSubsetOf a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range :Set .
+
+:setName a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range xsd:string .
+
+:setType a rdf:Property ;
+    rdfs:domain :Set ;
+    rdfs:range xsd:string .
+
+# Define Elements for Set A
+:ElementA1 a :Element ;
+    :elementName "1" .
+
+:ElementA2 a :Element ;
+    :elementName "2" .
+
+:ElementA3 a :Element ;
+    :elementName "3" .
+
+# Define Elements for Set B
+:ElementB1 a :Element ;
+    :elementName "100" .
+
+:ElementB2 a :Element ;
+    :elementName "200" .
+
+:ElementB3 a :Element ;
+    :elementName "300" .
+
+# Define Set C
+:Set_C a :Set ;
+    :setName "Set C" ;
+    :setType "String Set" ;
+    :hasElement :ElementC1, :ElementC2 .
+
+:ElementC1 a :Element ;
+    :elementName "A" .
+
+:ElementC2 a :Element ;
+    :elementName "B" .
+
+# Define Set D
+:Set_D a :Set ;
+    :setName "Set D" ;
+    :setType "String Set" ;
+    :hasElement :ElementD1, :ElementD2, :ElementD3 .
+
+:ElementD1 a :Element ;
+    :elementName "C" .
+
+:ElementD2 a :Element ;
+    :elementName "D" .
+
+:ElementD3 a :Element ;
+    :elementName "E" .

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Set Operations</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+      <div class="container">
+            <h1>Perform Set Operations</h1>
+            <form id="set-operation-form" action="{{ url_for('set_operation_page') }}" method="POST">
+                  <label for="set1">Select First Set:</label>
+                  <select id="set1" name="set1" required>
+                        {% for set in sets %}
+                        <option value="{{ set }}">{{ set }}</option>
+                        {% endfor %}
+                  </select>
+
+                  <label for="set2">Select Second Set:</label>
+                  <select id="set2" name="set2" required>
+                        {% for set in sets %}
+                        <option value="{{ set }}">{{ set }}</option>
+                        {% endfor %}
+                  </select>
+
+                  <label for="operation">Select Operation:</label>
+                  <select id="operation" name="operation" required>
+                        <option value="union">Union</option>
+                        <option value="intersection">Intersection</option>
+                        <option value="difference">Difference</option>
+                        <option value="subset">Subset</option>
+                  </select>
+
+                  <button type="submit">Perform Operation</button>
+            </form>
+
+            <div id="operation-result" style="margin-top: 20px;"></div>
+            <a href="/">Back to Home</a>
+      </div>
+
+      <script>
+            $(document).ready(function () {
+                  // Load sets into the dropdowns
+                  $.get('/sets', function (data) {
+                        data.forEach(function (set) {
+                              $('#set1, #set2').append('<option value="' + set.name + '">' + set.name + '</option>');
+                        });
+                  });
+
+                  // Handle form submission
+                  $('#set-operation-form').on('submit', function (event) {
+                        event.preventDefault(); // Prevent default form submission
+                        $.post($(this).attr('action'), $(this).serialize(), function (data) {
+                              if (data.is_subset !== undefined) {
+                                    $('#operation-result').html('<h2>Subset Result: ' + data.is_subset + '</h2>');
+                              } else {
+                                    // Display the elements of the selected sets
+                                    $('#operation-result').html('<h2>Set 1 Elements: ' + data.set1_elements.join(', ') + '</h2>');
+                                    $('#operation-result').append('<h2>Set 2 Elements: ' + data.set2_elements.join(', ') + '</h2>');
+                                    // Display the result of the set operation
+                                    $('#operation-result').append('<h2>Operation Result: ' + data.result.join(', ') + '</h2>');
+                              }
+                        }).fail(function () {
+                              $('#operation-result').html('<h2>Error: Unable to perform operation.</h2>');
+                        });
+                  });
+            });
+      </script>
+</body>
+
+</html>

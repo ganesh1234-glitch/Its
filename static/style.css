@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+}
+
+.container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+      text-align: center;
+      color: #333;
+}
+
+/* Button Styles */
+button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 10px 0;
+      /* Add some margin for spacing */
+}
+
+button:hover {
+      background-color: #0056b3;
+}
+
+/* Link Styles */
+a {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+}
+
+a:hover {
+      background-color: #218838;
+}
+
+/* Sets List Styles */
+#set-details {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196F3;
+}
+
+.set-item {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 5px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+}
+
+.set-item:hover {
+      background-color: #f0f0f0;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+      .container {
+            width: 95%;
+      }
+
+      button,
+      a {
+            width: 100%;
+            margin: 5px 0;
+            /* Stack buttons and links on smaller screens */
+      }
+}

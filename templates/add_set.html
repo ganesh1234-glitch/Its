@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Add Set</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+      <div class="container">
+            <h1>Add Set to Ontology</h1>
+            <form action="/add_set" method="POST">
+                  <label for="set_name">Set Name:</label>
+                  <input type="text" id="set_name" name="set_name" required>
+
+                  <label for="set_type">Set Type:</label>
+                  <input type="text" id="set_type" name="set_type" required>
+
+                  <button type="submit">Add Set</button>
+            </form>
+            <a href="/">Back to Home</a>
+      </div>
+</body>
+
+</html>
